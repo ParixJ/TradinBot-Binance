@@ -235,7 +235,7 @@ def validate_market_order(
         return MarketOrderRequest(
             symbol=symbol,
             side=side,
-            type=OrderType.MARKET.value,
+            order_type=OrderType.MARKET.value,
             quantity=Decimal(str(quantity))
         )
     except Exception as e:
@@ -357,3 +357,6 @@ def validate_leverage(
         )
     except Exception as e:
         raise ValidationError("leverage", str(e))
+    
+if __name__=='__main__':
+    print(OrderType.LIMIT.value)

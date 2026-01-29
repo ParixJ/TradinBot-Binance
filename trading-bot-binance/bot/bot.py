@@ -159,12 +159,10 @@ class BinanceFuturesBot:
         """
         # Validate inputs
         try:
-            logger.info('Entering validation phase for MARKET Order')
             validated = validate_market_order(symbol, side, quantity)
-            logger.info('Validation Successful')
             logger.info(
-                f"Placing market {validated.side.value} order: "
-                f"{validated.quantity} {validated.symbol.value}"
+                f"Placing market {validated.side} order: "
+                f"{validated} {validated.symbol}"
             )
         except ValidationError as e:
             logger.error(f"Market order validation failed: {e.message}")
@@ -173,9 +171,9 @@ class BinanceFuturesBot:
         # Execute order
         try:
             order = self.client.new_order(
-                symbol=validated.symbol.value,
-                side=validated.side.value,
-                type=validated.order_type.value,
+                symbol=validated.symbol,
+                side=validated.side,
+                type=validated.order_type,
                 quantity=float(validated.quantity)
             )
             
@@ -220,9 +218,9 @@ class BinanceFuturesBot:
                 symbol, side, quantity, price, time_in_force
             )
             logger.info(
-                f"Placing limit {validated.side.value} order: "
-                f"{validated.quantity} {validated.symbol.value} @ {validated.price}, "
-                f"TIF: {validated.time_in_force.value}"
+                f"Placing limit {validated.side} order: "
+                f"{validated.quantity} {validated.symbol} @ {validated.price}, "
+                f"TIF: {validated.time_in_force}"
             )
         except ValidationError as e:
             logger.error(f"Limit order validation failed: {e.message}")
@@ -231,10 +229,10 @@ class BinanceFuturesBot:
         # Execute order
         try:
             order = self.client.new_order(
-                symbol=validated.symbol.value,
-                side=validated.side.value,
-                type=validated.order_type.value,
-                timeInForce=validated.time_in_force.value,
+                symbol=validated.symbol,
+                side=validated.side,
+                type=validated.order_type,
+                timeInForce=validated.time_in_force,
                 quantity=float(validated.quantity),
                 price=float(validated.price)
             )
@@ -268,7 +266,7 @@ class BinanceFuturesBot:
         try:
             validated = validate_cancel_order(symbol, order_id)
             logger.info(
-                f"Cancelling order {validated.order_id} for {validated.symbol.value}"
+                f"Cancelling order {validated.order_id} for {validated.symbol}"
             )
         except ValidationError as e:
             logger.error(f"Cancel order validation failed: {e.message}")
@@ -277,7 +275,7 @@ class BinanceFuturesBot:
         # Cancel order
         try:
             response = self.client.cancel_order(
-                symbol=validated.symbol.value,
+                symbol=validated.symbol,
                 orderId=validated.order_id
             )
             
@@ -393,7 +391,7 @@ class BinanceFuturesBot:
         try:
             validated = validate_leverage(symbol, leverage)
             logger.info(
-                f"Setting leverage to {validated.leverage}x for {validated.symbol.value}"
+                f"Setting leverage to {validated.leverage}x for {validated.symbol}"
             )
         except ValidationError as e:
             logger.error(f"Leverage validation failed: {e.message}")
@@ -402,7 +400,7 @@ class BinanceFuturesBot:
         # Set leverage
         try:
             response = self.client.change_leverage(
-                symbol=validated.symbol.value,
+                symbol=validated.symbol,
                 leverage=validated.leverage
             )
             
