@@ -94,7 +94,7 @@ class LimitOrderRequest(BaseModel):
     )
     price: Decimal = Field(
         gt=0,
-        max_digits=10,
+        max_digits=8,
         decimal_places=2,
         description="Limit price - must be positive"
     )
@@ -270,8 +270,8 @@ def validate_limit_order(
             symbol=symbol,
             side=side,
             type=OrderType.LIMIT.value,
-            quantity=Decimal(quantity),
-            price=Decimal(price),
+            quantity=Decimal(str(quantity)),
+            price=Decimal(str(price)),
             timeInForce=time_in_force
         )
     except Exception as e:
