@@ -4,7 +4,6 @@
 {"asctime": "2026-01-30 01:20:37", "name": "cli", "levelname": "INFO", "message": "Bot initialized successfully"}
 {"asctime": "2026-01-30 01:20:49", "name": "trading_bot", "levelname": "INFO", "message": "Placing market BUY order: symbol='BTCUSDT' side='BUY' order_type='MARKET' quantity=Decimal('0.01') BTCUSDT"}
 {"asctime": "2026-01-30 01:20:50", "name": "trading_bot", "levelname": "INFO", "message": "Market order executed successfully: Order ID 12028770108, Status NEW"}
-{"asctime": "2026-01-30 01:21:25", "name": "trading_bot", "levelname": "ERROR", "message": "Limit order validation failed: 1 validation error for LimitOrderRequest\nquantity\n  Decimal input should have no more than 8 digits in total [type=decimal_max_digits, input_value=Decimal('0.01000000000000...2943093776702880859375'), input_type=Decimal]\n    For further information visit https://errors.pydantic.dev/2.12/v/decimal_max_digits"}
 {"asctime": "2026-01-30 01:23:10", "name": "trading_bot", "levelname": "INFO", "message": "Initializing Binance Futures Bot"}
 {"asctime": "2026-01-30 01:23:10", "name": "trading_bot", "levelname": "INFO", "message": "Credentials validated successfully"}
 {"asctime": "2026-01-30 01:23:10", "name": "trading_bot", "levelname": "INFO", "message": "Client initialized successfully"}
